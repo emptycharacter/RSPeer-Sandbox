@@ -3,14 +3,18 @@ package org.empty;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.adapter.scene.SceneObject;
+
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Area;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptMeta;
+import org.rspeer.script.task.TaskScript;
+import org.rspeer.ui.Log;
 
 import javax.swing.*;
 
@@ -19,14 +23,25 @@ import javax.swing.*;
 public class FirstScript extends Script {
 
     private boolean dropLogs = false;
-    private static final String DROP_Action = new String("Drop");
+
+    //Etc
     private static final String logName = new String("Oak Logs");
-    private static final String AXE_PREDICATE = new String("Axe");
     private static final String treeName = new String("Tree");
-    private static final String CUT_ACTION = new String("Chop Down");
+
+    //Predicates
+    private static final String AXE_PREDICATE = new String("Axe");
+
+    //Actions
+    private static final String DROP_Action = new String("Drop");
+    private static final String CUT_ACTION = new String("Chop down");
+
+    //Areas
 
     private static final Area BANK_AREA = Area.rectangular(null, null);
-    private static final Area TREE_AREA = Area.rectangular(null, null);
+    private static final Area TREE_AREA = Area.rectangular(3187, 3221, 3197, 3212);
+
+
+
 
     @Override
     public void onStart() {
@@ -35,6 +50,7 @@ public class FirstScript extends Script {
 
     @Override
     public int loop() {
+
         Player local = Players.getLocal();
         if(!local.isMoving() && !local.isAnimating()){
             if(Inventory.isFull()){
@@ -61,14 +77,18 @@ public class FirstScript extends Script {
                     //Cut trees
                     final SceneObject tree = SceneObjects.getNearest(treeName);
                     if(tree != null){
+                        Log.info("Chopping down tree");
                         tree.interact(CUT_ACTION);
                     }
                 }else{
                     //Walk to trees
+                    Log.info("Walking to tree");
+                    Movement.walkTo(TREE_AREA.getCenter());
+                    return 1000;
                 }
             }
         }
-        return 0;
+        return 600;
     }
 
 
