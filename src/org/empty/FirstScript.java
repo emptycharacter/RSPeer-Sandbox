@@ -25,11 +25,12 @@ public class FirstScript extends Script {
     private boolean dropLogs = false;
 
     //Etc
-    private static final String logName = new String("Oak Logs");
-    private static final String treeName = new String("Tree");
+
+    private static final String REGULAR_TREE_NAME = new String("Tree");
 
     //Predicates
     private static final String AXE_PREDICATE = new String("Axe");
+    private static final String REGULAR_LOG_NAME = new String("Logs");
 
     //Actions
     private static final String DROP_Action = new String("Drop");
@@ -54,28 +55,23 @@ public class FirstScript extends Script {
         Player local = Players.getLocal();
         if(!local.isMoving() && !local.isAnimating()){
             if(Inventory.isFull()){
-                if(dropLogs){
-                    //Drop logs
-                    for(Item log : Inventory.getItems(item -> item.getName().equals(logName))){
-                        log.interact(DROP_Action);
-                        Time.sleep(300);
+                //Bank logs
+                    if(!Bank.isOpen()){
+                        Log.info("Opening Bank");
+                        Bank.open();
+                        return 1000;
                     }
-                }else{
-                    if(BANK_AREA.contains(local)){
-                        if(Bank.isOpen())
-                        {
-                            Bank.depositAllExcept(AXE_PREDICATE);
-                        }else{
-                            //Open Bank
-                        }
-                    }else{
-                        //Walk to bank
+
+                    if(Bank.depositAll(REGULAR_LOG_NAME)){
+                        Log.info("Depositing Logs");
+                        return 1000;
                     }
                 }
             }else{
                 if(TREE_AREA.contains(local)){
                     //Cut trees
-                    final SceneObject tree = SceneObjects.getNearest(treeName);
+                    final SceneObject tree = SceneObjects.getNearest(x -> x
+                            .getName().equals(REGULAR_TREE_NAME) && TREE_AREA.contains(x));
                     if(tree != null){
                         Log.info("Chopping down tree");
                         tree.interact(CUT_ACTION);
@@ -87,9 +83,11 @@ public class FirstScript extends Script {
                     return 1000;
                 }
             }
-        }
         return 600;
-    }
+        }
+
+
+
 
 
     @Override
