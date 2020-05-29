@@ -19,6 +19,7 @@ public class FirstScript extends Script {
     private boolean dropLogs = false;
     private static final String DROP_Action = new String("Drop");
     private static final String logName = new String("Oak Logs");
+    private static final String AXE_PREDICATE = new String("Axe");
 
     private static final Area BANK_AREA = Area.rectangular(null, null);
     private static final Area TREE_AREA = Area.rectangular(null, null);
@@ -41,7 +42,12 @@ public class FirstScript extends Script {
                     }
                 }else{
                     if(BANK_AREA.contains(local)){
-                        //Bank logs
+                        if(Bank.isOpen())
+                        {
+                            Bank.depositAllExcept(AXE_PREDICATE);
+                        }else{
+                            //Open Bank
+                        }
                     }else{
                         //Walk to bank
                     }
