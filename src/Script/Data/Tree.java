@@ -4,21 +4,20 @@ import org.rspeer.runetek.api.movement.position.Area;
 
 public enum Tree {
 
-    TREE(),
-    OAK(),
-    WILLOW(),
-    MAPLE(),
-    YEW(),
+    TREE(1, "Tree", "Logs"),
+    OAK(15, "Oak", "Oak logs"),
+    WILLOW(30, "Willow", "Willow logs"),
+    MAPLE(45, "Maple", "Maple logs"),
+    YEW(60, "Yew", "Yew logs"),
+    MAGIC(75, "Magic", "Magic logs"),
     ;
 
     private int Level;
-    private Area treeArea;
     private String treeName;
     private String logName;
 
-    Tree(int level, Area treeArea, String treeName, String logName) {
+    Tree(int level, String treeName, String logName) {
         Level = level;
-        this.treeArea = treeArea;
         this.treeName = treeName;
         this.logName = logName;
     }
@@ -27,31 +26,11 @@ public enum Tree {
         return Level;
     }
 
-    public void setLevel(int level) {
-        Level = level;
-    }
-
-    public Area getTreeArea() {
-        return treeArea;
-    }
-
-    public void setTreeArea(Area treeArea) {
-        this.treeArea = treeArea;
-    }
-
     public String getTreeName() {
         return treeName;
     }
 
-    public void setTreeName(String treeName) {
-        this.treeName = treeName;
-    }
-
     public String getLogName() {
         return logName;
-    }
-
-    public void setLogName(String logName) {
-        this.logName = logName;
     }
 }
