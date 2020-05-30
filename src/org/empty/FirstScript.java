@@ -53,6 +53,8 @@ public class FirstScript extends Script {
     public int loop() {
 
         Player local = Players.getLocal();
+        final SceneObject tree = SceneObjects.getNearest(x -> x
+                .getName().equals(REGULAR_TREE_NAME) && TREE_AREA.contains(x));
         if(!local.isMoving() && !local.isAnimating()){
             if(Inventory.isFull()){
                 //Bank logs
@@ -68,14 +70,11 @@ public class FirstScript extends Script {
                     }
                 }
             }else{
-                if(TREE_AREA.contains(local)){
+                if(TREE_AREA.contains(local) && tree!= null){
                     //Cut trees
-                    final SceneObject tree = SceneObjects.getNearest(x -> x
-                            .getName().equals(REGULAR_TREE_NAME) && TREE_AREA.contains(x));
-                    if(tree != null){
-                        Log.info("Chopping down tree");
-                        tree.interact(CUT_ACTION);
-                    }
+                    Log.info("Chopping down tree");
+                    tree.interact(CUT_ACTION);
+
                 }else{
                     //Walk to trees
                     Log.info("Walking to tree");
