@@ -1,4 +1,6 @@
 package Script;
+import Script.Data.Location;
+import Script.Data.Tree;
 import Script.Tasks.Banking;
 import Script.Tasks.Drop;
 import Script.Tasks.Traverse;
@@ -14,9 +16,9 @@ public class FirstScript extends TaskScript {
 
     //Booleans
     public static boolean PowerCutting = false;
+    public static Tree tree;
+    public static Location location;
 
-    //Predicates
-    public static final String REGULAR_LOG_NAME = new String("Logs");
 
 
     @Override

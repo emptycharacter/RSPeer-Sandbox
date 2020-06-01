@@ -18,7 +18,7 @@ public class Banking extends Task {
             return 1000;
         }
 
-        Bank.depositAll(FirstScript.REGULAR_LOG_NAME);
+        Bank.depositAll(FirstScript.tree.getLogName());
         return 1000;
     }
 }

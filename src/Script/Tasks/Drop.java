@@ -17,7 +17,7 @@ public class Drop extends Task {
 
     @Override
     public int execute() {
-        for(Item item : Inventory.getItems(x -> !x.getName().equals(FirstScript.REGULAR_LOG_NAME))){
+        for(Item item : Inventory.getItems(x -> !x.getName().equals(FirstScript.tree.getLogName()))){
             item.interact(DROP_ACTION);
             Time.sleep(150, 250);
 
