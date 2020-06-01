@@ -8,7 +8,6 @@ import org.rspeer.script.task.Task;
 
 public class Traverse extends Task {
 
-    public static final Area TREE_AREA = Area.rectangular(3187, 3221, 3197, 3212);
 
     @Override
     public boolean validate() {

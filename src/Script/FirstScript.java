@@ -1,10 +1,7 @@
 package Script;
 import Script.Data.Location;
 import Script.Data.Tree;
-import Script.Tasks.Banking;
-import Script.Tasks.Drop;
-import Script.Tasks.Traverse;
-import Script.Tasks.Woodcut;
+import Script.Tasks.*;
 import Script.UI.GUI;
 import org.rspeer.runetek.api.movement.position.Area;
 import org.rspeer.script.ScriptMeta;
@@ -24,6 +21,7 @@ public class FirstScript extends TaskScript {
     @Override
     public void onStart() {
         submit(new GUI(),
+                new ToggleRun(),
                 new Banking(),
                 new Drop(),
                 new Traverse(),
