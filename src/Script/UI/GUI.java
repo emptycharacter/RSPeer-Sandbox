@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 
+import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
+
 public class GUI extends Task {
 
     private boolean validate;
@@ -41,7 +43,7 @@ public class GUI extends Task {
         locationsComboBox.addItemListener(this::locationsSelectionHandler);
         startBtn.addActionListener(x -> startBtnHandler());
 
-        frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(HIDE_ON_CLOSE);
         frame.setLocationRelativeTo(Game.getCanvas());
         frame.pack();
 
