@@ -15,7 +15,7 @@ import org.rspeer.ui.Log;
 
 import java.awt.*;
 
-@ScriptMeta(name = "Script Name", desc = "Script Description", developer = "Developer Name")
+@ScriptMeta(name = "Script Name", desc = "Scriiption", developer = "empty")
 public class FirstScript extends TaskScript implements RenderListener {
 
     //Booleans

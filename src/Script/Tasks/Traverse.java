@@ -11,7 +11,8 @@ public class Traverse extends Task {
 
     @Override
     public boolean validate() {
-        return !FirstScript.location.getTreeArea().contains(Players.getLocal());
+        boolean some = !FirstScript.location.getTreeArea().contains(Players.getLocal());
+        return some;
     }
 
     @Override
