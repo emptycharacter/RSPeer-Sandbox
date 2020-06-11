@@ -8,7 +8,7 @@ import org.rspeer.script.task.Task;
 
 public class Drop extends Task {
 
-    private static final String DROP_ACTION = new String("Drop");
+    private static final String DROP_ACTION = "Drop";
 
     @Override
     public boolean validate() {
