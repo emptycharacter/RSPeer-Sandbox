@@ -52,6 +52,7 @@ public class FirstScript extends TaskScript implements RenderListener {
         Graphics g = renderEvent.getSource();
 
         int gainedXP = (Skills.getExperience(Skill.WOODCUTTING) - startXP);
+        int calculatedXP = (Skills.getExperience(Skill.WOODCUTTING) - startXP);
 
         g.drawString("Runtime: " + runtime.toElapsedString(), 20, 20);
         g.drawString("XP Gained: " + gainedXP, 20, 40);
